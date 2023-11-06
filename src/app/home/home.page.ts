@@ -22,8 +22,7 @@ export class HomePage implements OnInit, OnDestroy {
 
   constructor(
     public modalCtrl: ModalController,
-    private dataService: DataService) 
-  { }
+    private dataService: DataService) { }
 
   ngOnDestroy(): void {
     this.sub.unsubscribe();
@@ -35,8 +34,8 @@ export class HomePage implements OnInit, OnDestroy {
 
   async getData() {
     this.sub = this.dataService.getTasks().subscribe((res) => {
-    this.tasks = res;
-    console.log(this.tasks);
+      this.tasks = res;
+      console.log(this.tasks);
     });
   }
 
@@ -53,10 +52,12 @@ export class HomePage implements OnInit, OnDestroy {
   }
 
   async goToUpdatePage(task: Task) {
+
     const modal = await this.modalCtrl.create({
       component: UpdateItemPage,
-      componentProps: task
+      componentProps: { task }
     })
+    console.log(task)
     return await modal.present();
   }
 

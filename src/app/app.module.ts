@@ -10,22 +10,22 @@ import { AppRoutingModule } from './app-routing.module';
 // rad sa Firebase bazom podataka
 import { environment } from 'src/environments/environment';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
-import { provideFirestore, getFirestore} from '@angular/fire/firestore';
+import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    BrowserModule, 
-    IonicModule.forRoot(), 
+    BrowserModule,
+    IonicModule.forRoot(),
     AppRoutingModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore()),
   ],
-  providers: [{ 
-    provide: RouteReuseStrategy, 
+  providers: [{
+    provide: RouteReuseStrategy,
     useClass: IonicRouteStrategy,
   }],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
